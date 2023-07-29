@@ -1,0 +1,5 @@
+var a : integer;
+begin
+    a := 'chr';
+    return;
+end;

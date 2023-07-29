@@ -1,0 +1,8 @@
+var a : integer;
+var b : integer;
+var c : char;
+var d : char;
+begin
+a:=b/13;
+c:=d+'ali';
+end;

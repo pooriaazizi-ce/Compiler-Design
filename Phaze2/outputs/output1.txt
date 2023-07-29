@@ -1,0 +1,7 @@
+LexToken(VAR,'var',1,0)
+LexToken(IDENTIFIER,'a',1,4)
+LexToken(ASSIGN,':=',1,6)
+LexToken(EQUAL,'=',1,8)
+LexToken(EQUAL,'=',1,9)
+LexToken(DIGIT,24587,1,10)
+LexToken(SEMICOLON,';',1,15)

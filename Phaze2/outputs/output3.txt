@@ -1,0 +1,6 @@
+LexToken(IDENTIFIER,'temp',1,0)
+LexToken(ASSIGN,':=',1,4)
+LexToken(DIGIT,12,1,7)
+LexToken(PLUS,'+',1,9)
+LexToken(IDENTIFIER,'b',1,11)
+LexToken(SEMICOLON,';',1,12)

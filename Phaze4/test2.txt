@@ -1,0 +1,5 @@
+var b : integer;
+begin
+if ( i > 2) then
+    b:=3;
+end;

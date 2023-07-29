@@ -1,0 +1,13 @@
+var a : integer;
+var ch : char;
+begin
+
+a:=a+122;
+ch:=ch+'ali';
+
+a:=a+'ahmad';
+a:=12+ch;
+ch:=ch+3;
+ch:='ali'+a;
+
+end;

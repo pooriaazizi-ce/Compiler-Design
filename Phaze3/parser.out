@@ -1,0 +1,2842 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DIGIT_ERROR
+    ILLEGALCHAR
+    LACKO
+    RACKO
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> C V P BEGIN statement S END SEMICOLON
+Rule 2     C -> CONST const_decl C
+Rule 3     C -> epsilon
+Rule 4     V -> VAR var_decl V
+Rule 5     V -> epsilon
+Rule 6     P -> proc_decl P
+Rule 7     P -> epsilon
+Rule 8     S -> statement S
+Rule 9     S -> epsilon
+Rule 10    const_decl -> ID EQUAL integer SEMICOLON
+Rule 11    ID -> IDENTIFIER CAMMA ID
+Rule 12    ID -> IDENTIFIER
+Rule 13    var_decl -> ID COLON type SEMICOLON
+Rule 14    type -> INTEGER
+Rule 15    proc_decl -> PROCEDURE IDENTIFIER LPAREN F RPAREN SEMICOLON block
+Rule 16    F -> format SEMICOLON F
+Rule 17    F -> format
+Rule 18    F -> epsilon
+Rule 19    format -> ID COLON M type
+Rule 20    M -> mode
+Rule 21    M -> epsilon
+Rule 22    mode -> IN
+Rule 23    mode -> OUT
+Rule 24    mode -> IN OUT
+Rule 25    block -> BEGIN C V S END SEMICOLON
+Rule 26    statement -> block
+Rule 27    statement -> print
+Rule 28    statement -> read
+Rule 29    statement -> asgn
+Rule 30    statement -> cond
+Rule 31    statement -> for
+Rule 32    statement -> return
+Rule 33    statement -> call
+Rule 34    print -> PRINT LPAREN string E RPAREN SEMICOLON
+Rule 35    E -> expr CAMMA E
+Rule 36    E -> expr
+Rule 37    E -> epsilon
+Rule 38    read -> READ LPAREN string Va RPAREN SEMICOLON
+Rule 39    Va -> var CAMMA Va
+Rule 40    Va -> expr
+Rule 41    Va -> epsilon
+Rule 42    string -> IDENTIFIER
+Rule 43    asgn -> var ASSIGN expr SEMICOLON
+Rule 44    cond -> IF bool THEN statement EL
+Rule 45    EL -> ELSE statement
+Rule 46    EL -> epsilon
+Rule 47    for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement
+Rule 48    return -> RETURN SEMICOLON
+Rule 49    call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON
+Rule 50    expr -> integer
+Rule 51    expr -> MINES expr
+Rule 52    expr -> expr PLUS expr
+Rule 53    expr -> expr MINES expr
+Rule 54    expr -> expr MUL expr
+Rule 55    expr -> expr DIVIDE expr
+Rule 56    expr -> LPAREN expr RPAREN
+Rule 57    expr -> var
+Rule 58    var -> IDENTIFIER BRAC
+Rule 59    BRAC -> LBRACKET expr RBRACKET
+Rule 60    BRAC -> epsilon
+Rule 61    bool -> NOT bool
+Rule 62    bool -> bool AND bool
+Rule 63    bool -> bool OR bool
+Rule 64    bool -> bool relop bool
+Rule 65    bool -> LPAREN bool RPAREN
+Rule 66    bool -> IDENTIFIER
+Rule 67    bool -> DIGIT
+Rule 68    relop -> EQUAL
+Rule 69    relop -> GREATER
+Rule 70    relop -> LESS
+Rule 71    relop -> GREATEQ
+Rule 72    relop -> LESSEQ
+Rule 73    relop -> NOT_EQUAL
+Rule 74    integer -> DIGIT
+Rule 75    epsilon -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 62
+ASSIGN               : 43 47
+BEGIN                : 1 25
+CALL                 : 49
+CAMMA                : 11 35 39
+COLON                : 13 19
+CONST                : 2
+DIGIT                : 67 74
+DIGIT_ERROR          : 
+DIVIDE               : 55
+DO                   : 47
+ELSE                 : 45
+END                  : 1 25
+EQUAL                : 10 68
+FOR                  : 47
+GREATEQ              : 71
+GREATER              : 69
+IDENTIFIER           : 11 12 15 42 47 49 58 66
+IF                   : 44
+ILLEGALCHAR          : 
+IN                   : 22 24
+INTEGER              : 14
+LACKO                : 
+LBRACKET             : 59
+LESS                 : 70
+LESSEQ               : 72
+LPAREN               : 15 34 38 49 56 65
+MINES                : 51 53
+MUL                  : 54
+NOT                  : 61
+NOT_EQUAL            : 73
+OR                   : 63
+OUT                  : 23 24
+PLUS                 : 52
+PRINT                : 34
+PROCEDURE            : 15
+RACKO                : 
+RBRACKET             : 59
+READ                 : 38
+RETURN               : 48
+RPAREN               : 15 34 38 49 56 65
+SEMICOLON            : 1 10 13 15 16 25 34 38 43 48 49
+THEN                 : 44
+TO                   : 47
+VAR                  : 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+BRAC                 : 58
+C                    : 1 2 25
+E                    : 34 35 49
+EL                   : 44
+F                    : 15 16
+ID                   : 10 11 13 19
+M                    : 19
+P                    : 1 6
+S                    : 1 8 25
+V                    : 1 4 25
+Va                   : 38 39
+asgn                 : 29
+block                : 15 26
+bool                 : 44 61 62 62 63 63 64 64 65
+call                 : 33
+cond                 : 30
+const_decl           : 2
+epsilon              : 3 5 7 9 18 21 37 41 46 60
+expr                 : 35 36 40 43 47 47 51 52 52 53 53 54 54 55 55 56 59
+for                  : 31
+format               : 16 17
+integer              : 10 50
+mode                 : 20
+print                : 27
+proc_decl            : 6
+program              : 0
+read                 : 28
+relop                : 64
+return               : 32
+statement            : 1 8 44 45 47
+string               : 34 38
+type                 : 13 19
+var                  : 39 43 57
+var_decl             : 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . C V P BEGIN statement S END SEMICOLON
+    (2) C -> . CONST const_decl C
+    (3) C -> . epsilon
+    (75) epsilon -> .
+
+    CONST           shift and go to state 3
+    VAR             reduce using rule 75 (epsilon -> .)
+    PROCEDURE       reduce using rule 75 (epsilon -> .)
+    BEGIN           reduce using rule 75 (epsilon -> .)
+
+    program                        shift and go to state 1
+    C                              shift and go to state 2
+    epsilon                        shift and go to state 4
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> C . V P BEGIN statement S END SEMICOLON
+    (4) V -> . VAR var_decl V
+    (5) V -> . epsilon
+    (75) epsilon -> .
+
+    VAR             shift and go to state 6
+    PROCEDURE       reduce using rule 75 (epsilon -> .)
+    BEGIN           reduce using rule 75 (epsilon -> .)
+
+    V                              shift and go to state 5
+    epsilon                        shift and go to state 7
+
+state 3
+
+    (2) C -> CONST . const_decl C
+    (10) const_decl -> . ID EQUAL integer SEMICOLON
+    (11) ID -> . IDENTIFIER CAMMA ID
+    (12) ID -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 10
+
+    const_decl                     shift and go to state 8
+    ID                             shift and go to state 9
+
+state 4
+
+    (3) C -> epsilon .
+
+    VAR             reduce using rule 3 (C -> epsilon .)
+    PROCEDURE       reduce using rule 3 (C -> epsilon .)
+    BEGIN           reduce using rule 3 (C -> epsilon .)
+    PRINT           reduce using rule 3 (C -> epsilon .)
+    READ            reduce using rule 3 (C -> epsilon .)
+    IF              reduce using rule 3 (C -> epsilon .)
+    FOR             reduce using rule 3 (C -> epsilon .)
+    RETURN          reduce using rule 3 (C -> epsilon .)
+    CALL            reduce using rule 3 (C -> epsilon .)
+    IDENTIFIER      reduce using rule 3 (C -> epsilon .)
+    END             reduce using rule 3 (C -> epsilon .)
+
+
+state 5
+
+    (1) program -> C V . P BEGIN statement S END SEMICOLON
+    (6) P -> . proc_decl P
+    (7) P -> . epsilon
+    (15) proc_decl -> . PROCEDURE IDENTIFIER LPAREN F RPAREN SEMICOLON block
+    (75) epsilon -> .
+
+    PROCEDURE       shift and go to state 14
+    BEGIN           reduce using rule 75 (epsilon -> .)
+
+    P                              shift and go to state 11
+    proc_decl                      shift and go to state 12
+    epsilon                        shift and go to state 13
+
+state 6
+
+    (4) V -> VAR . var_decl V
+    (13) var_decl -> . ID COLON type SEMICOLON
+    (11) ID -> . IDENTIFIER CAMMA ID
+    (12) ID -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 10
+
+    var_decl                       shift and go to state 15
+    ID                             shift and go to state 16
+
+state 7
+
+    (5) V -> epsilon .
+
+    PROCEDURE       reduce using rule 5 (V -> epsilon .)
+    BEGIN           reduce using rule 5 (V -> epsilon .)
+    PRINT           reduce using rule 5 (V -> epsilon .)
+    READ            reduce using rule 5 (V -> epsilon .)
+    IF              reduce using rule 5 (V -> epsilon .)
+    FOR             reduce using rule 5 (V -> epsilon .)
+    RETURN          reduce using rule 5 (V -> epsilon .)
+    CALL            reduce using rule 5 (V -> epsilon .)
+    IDENTIFIER      reduce using rule 5 (V -> epsilon .)
+    END             reduce using rule 5 (V -> epsilon .)
+
+
+state 8
+
+    (2) C -> CONST const_decl . C
+    (2) C -> . CONST const_decl C
+    (3) C -> . epsilon
+    (75) epsilon -> .
+
+    CONST           shift and go to state 3
+    VAR             reduce using rule 75 (epsilon -> .)
+    PROCEDURE       reduce using rule 75 (epsilon -> .)
+    BEGIN           reduce using rule 75 (epsilon -> .)
+    PRINT           reduce using rule 75 (epsilon -> .)
+    READ            reduce using rule 75 (epsilon -> .)
+    IF              reduce using rule 75 (epsilon -> .)
+    FOR             reduce using rule 75 (epsilon -> .)
+    RETURN          reduce using rule 75 (epsilon -> .)
+    CALL            reduce using rule 75 (epsilon -> .)
+    IDENTIFIER      reduce using rule 75 (epsilon -> .)
+    END             reduce using rule 75 (epsilon -> .)
+
+    C                              shift and go to state 17
+    epsilon                        shift and go to state 4
+
+state 9
+
+    (10) const_decl -> ID . EQUAL integer SEMICOLON
+
+    EQUAL           shift and go to state 18
+
+
+state 10
+
+    (11) ID -> IDENTIFIER . CAMMA ID
+    (12) ID -> IDENTIFIER .
+
+    CAMMA           shift and go to state 19
+    EQUAL           reduce using rule 12 (ID -> IDENTIFIER .)
+    COLON           reduce using rule 12 (ID -> IDENTIFIER .)
+
+
+state 11
+
+    (1) program -> C V P . BEGIN statement S END SEMICOLON
+
+    BEGIN           shift and go to state 20
+
+
+state 12
+
+    (6) P -> proc_decl . P
+    (6) P -> . proc_decl P
+    (7) P -> . epsilon
+    (15) proc_decl -> . PROCEDURE IDENTIFIER LPAREN F RPAREN SEMICOLON block
+    (75) epsilon -> .
+
+    PROCEDURE       shift and go to state 14
+    BEGIN           reduce using rule 75 (epsilon -> .)
+
+    proc_decl                      shift and go to state 12
+    P                              shift and go to state 21
+    epsilon                        shift and go to state 13
+
+state 13
+
+    (7) P -> epsilon .
+
+    BEGIN           reduce using rule 7 (P -> epsilon .)
+
+
+state 14
+
+    (15) proc_decl -> PROCEDURE . IDENTIFIER LPAREN F RPAREN SEMICOLON block
+
+    IDENTIFIER      shift and go to state 22
+
+
+state 15
+
+    (4) V -> VAR var_decl . V
+    (4) V -> . VAR var_decl V
+    (5) V -> . epsilon
+    (75) epsilon -> .
+
+    VAR             shift and go to state 6
+    PROCEDURE       reduce using rule 75 (epsilon -> .)
+    BEGIN           reduce using rule 75 (epsilon -> .)
+    PRINT           reduce using rule 75 (epsilon -> .)
+    READ            reduce using rule 75 (epsilon -> .)
+    IF              reduce using rule 75 (epsilon -> .)
+    FOR             reduce using rule 75 (epsilon -> .)
+    RETURN          reduce using rule 75 (epsilon -> .)
+    CALL            reduce using rule 75 (epsilon -> .)
+    IDENTIFIER      reduce using rule 75 (epsilon -> .)
+    END             reduce using rule 75 (epsilon -> .)
+
+    V                              shift and go to state 23
+    epsilon                        shift and go to state 7
+
+state 16
+
+    (13) var_decl -> ID . COLON type SEMICOLON
+
+    COLON           shift and go to state 24
+
+
+state 17
+
+    (2) C -> CONST const_decl C .
+
+    VAR             reduce using rule 2 (C -> CONST const_decl C .)
+    PROCEDURE       reduce using rule 2 (C -> CONST const_decl C .)
+    BEGIN           reduce using rule 2 (C -> CONST const_decl C .)
+    PRINT           reduce using rule 2 (C -> CONST const_decl C .)
+    READ            reduce using rule 2 (C -> CONST const_decl C .)
+    IF              reduce using rule 2 (C -> CONST const_decl C .)
+    FOR             reduce using rule 2 (C -> CONST const_decl C .)
+    RETURN          reduce using rule 2 (C -> CONST const_decl C .)
+    CALL            reduce using rule 2 (C -> CONST const_decl C .)
+    IDENTIFIER      reduce using rule 2 (C -> CONST const_decl C .)
+    END             reduce using rule 2 (C -> CONST const_decl C .)
+
+
+state 18
+
+    (10) const_decl -> ID EQUAL . integer SEMICOLON
+    (74) integer -> . DIGIT
+
+    DIGIT           shift and go to state 26
+
+    integer                        shift and go to state 25
+
+state 19
+
+    (11) ID -> IDENTIFIER CAMMA . ID
+    (11) ID -> . IDENTIFIER CAMMA ID
+    (12) ID -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 10
+
+    ID                             shift and go to state 27
+
+state 20
+
+    (1) program -> C V P BEGIN . statement S END SEMICOLON
+    (26) statement -> . block
+    (27) statement -> . print
+    (28) statement -> . read
+    (29) statement -> . asgn
+    (30) statement -> . cond
+    (31) statement -> . for
+    (32) statement -> . return
+    (33) statement -> . call
+    (25) block -> . BEGIN C V S END SEMICOLON
+    (34) print -> . PRINT LPAREN string E RPAREN SEMICOLON
+    (38) read -> . READ LPAREN string Va RPAREN SEMICOLON
+    (43) asgn -> . var ASSIGN expr SEMICOLON
+    (44) cond -> . IF bool THEN statement EL
+    (47) for -> . FOR IDENTIFIER ASSIGN expr TO expr DO statement
+    (48) return -> . RETURN SEMICOLON
+    (49) call -> . CALL IDENTIFIER LPAREN E RPAREN SEMICOLON
+    (58) var -> . IDENTIFIER BRAC
+
+    BEGIN           shift and go to state 28
+    PRINT           shift and go to state 38
+    READ            shift and go to state 39
+    IF              shift and go to state 41
+    FOR             shift and go to state 42
+    RETURN          shift and go to state 44
+    CALL            shift and go to state 45
+    IDENTIFIER      shift and go to state 43
+
+    statement                      shift and go to state 29
+    block                          shift and go to state 30
+    print                          shift and go to state 31
+    read                           shift and go to state 32
+    asgn                           shift and go to state 33
+    cond                           shift and go to state 34
+    for                            shift and go to state 35
+    return                         shift and go to state 36
+    call                           shift and go to state 37
+    var                            shift and go to state 40
+
+state 21
+
+    (6) P -> proc_decl P .
+
+    BEGIN           reduce using rule 6 (P -> proc_decl P .)
+
+
+state 22
+
+    (15) proc_decl -> PROCEDURE IDENTIFIER . LPAREN F RPAREN SEMICOLON block
+
+    LPAREN          shift and go to state 46
+
+
+state 23
+
+    (4) V -> VAR var_decl V .
+
+    PROCEDURE       reduce using rule 4 (V -> VAR var_decl V .)
+    BEGIN           reduce using rule 4 (V -> VAR var_decl V .)
+    PRINT           reduce using rule 4 (V -> VAR var_decl V .)
+    READ            reduce using rule 4 (V -> VAR var_decl V .)
+    IF              reduce using rule 4 (V -> VAR var_decl V .)
+    FOR             reduce using rule 4 (V -> VAR var_decl V .)
+    RETURN          reduce using rule 4 (V -> VAR var_decl V .)
+    CALL            reduce using rule 4 (V -> VAR var_decl V .)
+    IDENTIFIER      reduce using rule 4 (V -> VAR var_decl V .)
+    END             reduce using rule 4 (V -> VAR var_decl V .)
+
+
+state 24
+
+    (13) var_decl -> ID COLON . type SEMICOLON
+    (14) type -> . INTEGER
+
+    INTEGER         shift and go to state 48
+
+    type                           shift and go to state 47
+
+state 25
+
+    (10) const_decl -> ID EQUAL integer . SEMICOLON
+
+    SEMICOLON       shift and go to state 49
+
+
+state 26
+
+    (74) integer -> DIGIT .
+
+    SEMICOLON       reduce using rule 74 (integer -> DIGIT .)
+    PLUS            reduce using rule 74 (integer -> DIGIT .)
+    MINES           reduce using rule 74 (integer -> DIGIT .)
+    MUL             reduce using rule 74 (integer -> DIGIT .)
+    DIVIDE          reduce using rule 74 (integer -> DIGIT .)
+    RBRACKET        reduce using rule 74 (integer -> DIGIT .)
+    CAMMA           reduce using rule 74 (integer -> DIGIT .)
+    RPAREN          reduce using rule 74 (integer -> DIGIT .)
+    TO              reduce using rule 74 (integer -> DIGIT .)
+    DO              reduce using rule 74 (integer -> DIGIT .)
+
+
+state 27
+
+    (11) ID -> IDENTIFIER CAMMA ID .
+
+    EQUAL           reduce using rule 11 (ID -> IDENTIFIER CAMMA ID .)
+    COLON           reduce using rule 11 (ID -> IDENTIFIER CAMMA ID .)
+
+
+state 28
+
+    (25) block -> BEGIN . C V S END SEMICOLON
+    (2) C -> . CONST const_decl C
+    (3) C -> . epsilon
+    (75) epsilon -> .
+
+    CONST           shift and go to state 3
+    VAR             reduce using rule 75 (epsilon -> .)
+    BEGIN           reduce using rule 75 (epsilon -> .)
+    PRINT           reduce using rule 75 (epsilon -> .)
+    READ            reduce using rule 75 (epsilon -> .)
+    IF              reduce using rule 75 (epsilon -> .)
+    FOR             reduce using rule 75 (epsilon -> .)
+    RETURN          reduce using rule 75 (epsilon -> .)
+    CALL            reduce using rule 75 (epsilon -> .)
+    IDENTIFIER      reduce using rule 75 (epsilon -> .)
+    END             reduce using rule 75 (epsilon -> .)
+
+    C                              shift and go to state 50
+    epsilon                        shift and go to state 4
+
+state 29
+
+    (1) program -> C V P BEGIN statement . S END SEMICOLON
+    (8) S -> . statement S
+    (9) S -> . epsilon
+    (26) statement -> . block
+    (27) statement -> . print
+    (28) statement -> . read
+    (29) statement -> . asgn
+    (30) statement -> . cond
+    (31) statement -> . for
+    (32) statement -> . return
+    (33) statement -> . call
+    (75) epsilon -> .
+    (25) block -> . BEGIN C V S END SEMICOLON
+    (34) print -> . PRINT LPAREN string E RPAREN SEMICOLON
+    (38) read -> . READ LPAREN string Va RPAREN SEMICOLON
+    (43) asgn -> . var ASSIGN expr SEMICOLON
+    (44) cond -> . IF bool THEN statement EL
+    (47) for -> . FOR IDENTIFIER ASSIGN expr TO expr DO statement
+    (48) return -> . RETURN SEMICOLON
+    (49) call -> . CALL IDENTIFIER LPAREN E RPAREN SEMICOLON
+    (58) var -> . IDENTIFIER BRAC
+
+    END             reduce using rule 75 (epsilon -> .)
+    BEGIN           shift and go to state 28
+    PRINT           shift and go to state 38
+    READ            shift and go to state 39
+    IF              shift and go to state 41
+    FOR             shift and go to state 42
+    RETURN          shift and go to state 44
+    CALL            shift and go to state 45
+    IDENTIFIER      shift and go to state 43
+
+    statement                      shift and go to state 51
+    S                              shift and go to state 52
+    epsilon                        shift and go to state 53
+    block                          shift and go to state 30
+    print                          shift and go to state 31
+    read                           shift and go to state 32
+    asgn                           shift and go to state 33
+    cond                           shift and go to state 34
+    for                            shift and go to state 35
+    return                         shift and go to state 36
+    call                           shift and go to state 37
+    var                            shift and go to state 40
+
+state 30
+
+    (26) statement -> block .
+
+    BEGIN           reduce using rule 26 (statement -> block .)
+    PRINT           reduce using rule 26 (statement -> block .)
+    READ            reduce using rule 26 (statement -> block .)
+    IF              reduce using rule 26 (statement -> block .)
+    FOR             reduce using rule 26 (statement -> block .)
+    RETURN          reduce using rule 26 (statement -> block .)
+    CALL            reduce using rule 26 (statement -> block .)
+    IDENTIFIER      reduce using rule 26 (statement -> block .)
+    END             reduce using rule 26 (statement -> block .)
+    ELSE            reduce using rule 26 (statement -> block .)
+
+
+state 31
+
+    (27) statement -> print .
+
+    BEGIN           reduce using rule 27 (statement -> print .)
+    PRINT           reduce using rule 27 (statement -> print .)
+    READ            reduce using rule 27 (statement -> print .)
+    IF              reduce using rule 27 (statement -> print .)
+    FOR             reduce using rule 27 (statement -> print .)
+    RETURN          reduce using rule 27 (statement -> print .)
+    CALL            reduce using rule 27 (statement -> print .)
+    IDENTIFIER      reduce using rule 27 (statement -> print .)
+    END             reduce using rule 27 (statement -> print .)
+    ELSE            reduce using rule 27 (statement -> print .)
+
+
+state 32
+
+    (28) statement -> read .
+
+    BEGIN           reduce using rule 28 (statement -> read .)
+    PRINT           reduce using rule 28 (statement -> read .)
+    READ            reduce using rule 28 (statement -> read .)
+    IF              reduce using rule 28 (statement -> read .)
+    FOR             reduce using rule 28 (statement -> read .)
+    RETURN          reduce using rule 28 (statement -> read .)
+    CALL            reduce using rule 28 (statement -> read .)
+    IDENTIFIER      reduce using rule 28 (statement -> read .)
+    END             reduce using rule 28 (statement -> read .)
+    ELSE            reduce using rule 28 (statement -> read .)
+
+
+state 33
+
+    (29) statement -> asgn .
+
+    BEGIN           reduce using rule 29 (statement -> asgn .)
+    PRINT           reduce using rule 29 (statement -> asgn .)
+    READ            reduce using rule 29 (statement -> asgn .)
+    IF              reduce using rule 29 (statement -> asgn .)
+    FOR             reduce using rule 29 (statement -> asgn .)
+    RETURN          reduce using rule 29 (statement -> asgn .)
+    CALL            reduce using rule 29 (statement -> asgn .)
+    IDENTIFIER      reduce using rule 29 (statement -> asgn .)
+    END             reduce using rule 29 (statement -> asgn .)
+    ELSE            reduce using rule 29 (statement -> asgn .)
+
+
+state 34
+
+    (30) statement -> cond .
+
+    BEGIN           reduce using rule 30 (statement -> cond .)
+    PRINT           reduce using rule 30 (statement -> cond .)
+    READ            reduce using rule 30 (statement -> cond .)
+    IF              reduce using rule 30 (statement -> cond .)
+    FOR             reduce using rule 30 (statement -> cond .)
+    RETURN          reduce using rule 30 (statement -> cond .)
+    CALL            reduce using rule 30 (statement -> cond .)
+    IDENTIFIER      reduce using rule 30 (statement -> cond .)
+    END             reduce using rule 30 (statement -> cond .)
+    ELSE            reduce using rule 30 (statement -> cond .)
+
+
+state 35
+
+    (31) statement -> for .
+
+    BEGIN           reduce using rule 31 (statement -> for .)
+    PRINT           reduce using rule 31 (statement -> for .)
+    READ            reduce using rule 31 (statement -> for .)
+    IF              reduce using rule 31 (statement -> for .)
+    FOR             reduce using rule 31 (statement -> for .)
+    RETURN          reduce using rule 31 (statement -> for .)
+    CALL            reduce using rule 31 (statement -> for .)
+    IDENTIFIER      reduce using rule 31 (statement -> for .)
+    END             reduce using rule 31 (statement -> for .)
+    ELSE            reduce using rule 31 (statement -> for .)
+
+
+state 36
+
+    (32) statement -> return .
+
+    BEGIN           reduce using rule 32 (statement -> return .)
+    PRINT           reduce using rule 32 (statement -> return .)
+    READ            reduce using rule 32 (statement -> return .)
+    IF              reduce using rule 32 (statement -> return .)
+    FOR             reduce using rule 32 (statement -> return .)
+    RETURN          reduce using rule 32 (statement -> return .)
+    CALL            reduce using rule 32 (statement -> return .)
+    IDENTIFIER      reduce using rule 32 (statement -> return .)
+    END             reduce using rule 32 (statement -> return .)
+    ELSE            reduce using rule 32 (statement -> return .)
+
+
+state 37
+
+    (33) statement -> call .
+
+    BEGIN           reduce using rule 33 (statement -> call .)
+    PRINT           reduce using rule 33 (statement -> call .)
+    READ            reduce using rule 33 (statement -> call .)
+    IF              reduce using rule 33 (statement -> call .)
+    FOR             reduce using rule 33 (statement -> call .)
+    RETURN          reduce using rule 33 (statement -> call .)
+    CALL            reduce using rule 33 (statement -> call .)
+    IDENTIFIER      reduce using rule 33 (statement -> call .)
+    END             reduce using rule 33 (statement -> call .)
+    ELSE            reduce using rule 33 (statement -> call .)
+
+
+state 38
+
+    (34) print -> PRINT . LPAREN string E RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 54
+
+
+state 39
+
+    (38) read -> READ . LPAREN string Va RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 55
+
+
+state 40
+
+    (43) asgn -> var . ASSIGN expr SEMICOLON
+
+    ASSIGN          shift and go to state 56
+
+
+state 41
+
+    (44) cond -> IF . bool THEN statement EL
+    (61) bool -> . NOT bool
+    (62) bool -> . bool AND bool
+    (63) bool -> . bool OR bool
+    (64) bool -> . bool relop bool
+    (65) bool -> . LPAREN bool RPAREN
+    (66) bool -> . IDENTIFIER
+    (67) bool -> . DIGIT
+
+    NOT             shift and go to state 58
+    LPAREN          shift and go to state 59
+    IDENTIFIER      shift and go to state 60
+    DIGIT           shift and go to state 61
+
+    bool                           shift and go to state 57
+
+state 42
+
+    (47) for -> FOR . IDENTIFIER ASSIGN expr TO expr DO statement
+
+    IDENTIFIER      shift and go to state 62
+
+
+state 43
+
+    (58) var -> IDENTIFIER . BRAC
+    (59) BRAC -> . LBRACKET expr RBRACKET
+    (60) BRAC -> . epsilon
+    (75) epsilon -> .
+
+    LBRACKET        shift and go to state 64
+    ASSIGN          reduce using rule 75 (epsilon -> .)
+    SEMICOLON       reduce using rule 75 (epsilon -> .)
+    PLUS            reduce using rule 75 (epsilon -> .)
+    MINES           reduce using rule 75 (epsilon -> .)
+    MUL             reduce using rule 75 (epsilon -> .)
+    DIVIDE          reduce using rule 75 (epsilon -> .)
+    RBRACKET        reduce using rule 75 (epsilon -> .)
+    CAMMA           reduce using rule 75 (epsilon -> .)
+    RPAREN          reduce using rule 75 (epsilon -> .)
+    TO              reduce using rule 75 (epsilon -> .)
+    DO              reduce using rule 75 (epsilon -> .)
+
+    BRAC                           shift and go to state 63
+    epsilon                        shift and go to state 65
+
+state 44
+
+    (48) return -> RETURN . SEMICOLON
+
+    SEMICOLON       shift and go to state 66
+
+
+state 45
+
+    (49) call -> CALL . IDENTIFIER LPAREN E RPAREN SEMICOLON
+
+    IDENTIFIER      shift and go to state 67
+
+
+state 46
+
+    (15) proc_decl -> PROCEDURE IDENTIFIER LPAREN . F RPAREN SEMICOLON block
+    (16) F -> . format SEMICOLON F
+    (17) F -> . format
+    (18) F -> . epsilon
+    (19) format -> . ID COLON M type
+    (75) epsilon -> .
+    (11) ID -> . IDENTIFIER CAMMA ID
+    (12) ID -> . IDENTIFIER
+
+    RPAREN          reduce using rule 75 (epsilon -> .)
+    IDENTIFIER      shift and go to state 10
+
+    F                              shift and go to state 68
+    format                         shift and go to state 69
+    epsilon                        shift and go to state 70
+    ID                             shift and go to state 71
+
+state 47
+
+    (13) var_decl -> ID COLON type . SEMICOLON
+
+    SEMICOLON       shift and go to state 72
+
+
+state 48
+
+    (14) type -> INTEGER .
+
+    SEMICOLON       reduce using rule 14 (type -> INTEGER .)
+    RPAREN          reduce using rule 14 (type -> INTEGER .)
+
+
+state 49
+
+    (10) const_decl -> ID EQUAL integer SEMICOLON .
+
+    CONST           reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+    VAR             reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+    PROCEDURE       reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+    BEGIN           reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+    PRINT           reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+    READ            reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+    IF              reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+    FOR             reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+    RETURN          reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+    CALL            reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+    IDENTIFIER      reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+    END             reduce using rule 10 (const_decl -> ID EQUAL integer SEMICOLON .)
+
+
+state 50
+
+    (25) block -> BEGIN C . V S END SEMICOLON
+    (4) V -> . VAR var_decl V
+    (5) V -> . epsilon
+    (75) epsilon -> .
+
+    VAR             shift and go to state 6
+    BEGIN           reduce using rule 75 (epsilon -> .)
+    PRINT           reduce using rule 75 (epsilon -> .)
+    READ            reduce using rule 75 (epsilon -> .)
+    IF              reduce using rule 75 (epsilon -> .)
+    FOR             reduce using rule 75 (epsilon -> .)
+    RETURN          reduce using rule 75 (epsilon -> .)
+    CALL            reduce using rule 75 (epsilon -> .)
+    IDENTIFIER      reduce using rule 75 (epsilon -> .)
+    END             reduce using rule 75 (epsilon -> .)
+
+    V                              shift and go to state 73
+    epsilon                        shift and go to state 7
+
+state 51
+
+    (8) S -> statement . S
+    (8) S -> . statement S
+    (9) S -> . epsilon
+    (26) statement -> . block
+    (27) statement -> . print
+    (28) statement -> . read
+    (29) statement -> . asgn
+    (30) statement -> . cond
+    (31) statement -> . for
+    (32) statement -> . return
+    (33) statement -> . call
+    (75) epsilon -> .
+    (25) block -> . BEGIN C V S END SEMICOLON
+    (34) print -> . PRINT LPAREN string E RPAREN SEMICOLON
+    (38) read -> . READ LPAREN string Va RPAREN SEMICOLON
+    (43) asgn -> . var ASSIGN expr SEMICOLON
+    (44) cond -> . IF bool THEN statement EL
+    (47) for -> . FOR IDENTIFIER ASSIGN expr TO expr DO statement
+    (48) return -> . RETURN SEMICOLON
+    (49) call -> . CALL IDENTIFIER LPAREN E RPAREN SEMICOLON
+    (58) var -> . IDENTIFIER BRAC
+
+    END             reduce using rule 75 (epsilon -> .)
+    BEGIN           shift and go to state 28
+    PRINT           shift and go to state 38
+    READ            shift and go to state 39
+    IF              shift and go to state 41
+    FOR             shift and go to state 42
+    RETURN          shift and go to state 44
+    CALL            shift and go to state 45
+    IDENTIFIER      shift and go to state 43
+
+    statement                      shift and go to state 51
+    S                              shift and go to state 74
+    epsilon                        shift and go to state 53
+    block                          shift and go to state 30
+    print                          shift and go to state 31
+    read                           shift and go to state 32
+    asgn                           shift and go to state 33
+    cond                           shift and go to state 34
+    for                            shift and go to state 35
+    return                         shift and go to state 36
+    call                           shift and go to state 37
+    var                            shift and go to state 40
+
+state 52
+
+    (1) program -> C V P BEGIN statement S . END SEMICOLON
+
+    END             shift and go to state 75
+
+
+state 53
+
+    (9) S -> epsilon .
+
+    END             reduce using rule 9 (S -> epsilon .)
+
+
+state 54
+
+    (34) print -> PRINT LPAREN . string E RPAREN SEMICOLON
+    (42) string -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 77
+
+    string                         shift and go to state 76
+
+state 55
+
+    (38) read -> READ LPAREN . string Va RPAREN SEMICOLON
+    (42) string -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 77
+
+    string                         shift and go to state 78
+
+state 56
+
+    (43) asgn -> var ASSIGN . expr SEMICOLON
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    var                            shift and go to state 79
+    expr                           shift and go to state 80
+    integer                        shift and go to state 81
+
+state 57
+
+    (44) cond -> IF bool . THEN statement EL
+    (62) bool -> bool . AND bool
+    (63) bool -> bool . OR bool
+    (64) bool -> bool . relop bool
+    (68) relop -> . EQUAL
+    (69) relop -> . GREATER
+    (70) relop -> . LESS
+    (71) relop -> . GREATEQ
+    (72) relop -> . LESSEQ
+    (73) relop -> . NOT_EQUAL
+
+    THEN            shift and go to state 84
+    AND             shift and go to state 85
+    OR              shift and go to state 86
+    EQUAL           shift and go to state 88
+    GREATER         shift and go to state 89
+    LESS            shift and go to state 90
+    GREATEQ         shift and go to state 91
+    LESSEQ          shift and go to state 92
+    NOT_EQUAL       shift and go to state 93
+
+    relop                          shift and go to state 87
+
+state 58
+
+    (61) bool -> NOT . bool
+    (61) bool -> . NOT bool
+    (62) bool -> . bool AND bool
+    (63) bool -> . bool OR bool
+    (64) bool -> . bool relop bool
+    (65) bool -> . LPAREN bool RPAREN
+    (66) bool -> . IDENTIFIER
+    (67) bool -> . DIGIT
+
+    NOT             shift and go to state 58
+    LPAREN          shift and go to state 59
+    IDENTIFIER      shift and go to state 60
+    DIGIT           shift and go to state 61
+
+    bool                           shift and go to state 94
+
+state 59
+
+    (65) bool -> LPAREN . bool RPAREN
+    (61) bool -> . NOT bool
+    (62) bool -> . bool AND bool
+    (63) bool -> . bool OR bool
+    (64) bool -> . bool relop bool
+    (65) bool -> . LPAREN bool RPAREN
+    (66) bool -> . IDENTIFIER
+    (67) bool -> . DIGIT
+
+    NOT             shift and go to state 58
+    LPAREN          shift and go to state 59
+    IDENTIFIER      shift and go to state 60
+    DIGIT           shift and go to state 61
+
+    bool                           shift and go to state 95
+
+state 60
+
+    (66) bool -> IDENTIFIER .
+
+    THEN            reduce using rule 66 (bool -> IDENTIFIER .)
+    AND             reduce using rule 66 (bool -> IDENTIFIER .)
+    OR              reduce using rule 66 (bool -> IDENTIFIER .)
+    EQUAL           reduce using rule 66 (bool -> IDENTIFIER .)
+    GREATER         reduce using rule 66 (bool -> IDENTIFIER .)
+    LESS            reduce using rule 66 (bool -> IDENTIFIER .)
+    GREATEQ         reduce using rule 66 (bool -> IDENTIFIER .)
+    LESSEQ          reduce using rule 66 (bool -> IDENTIFIER .)
+    NOT_EQUAL       reduce using rule 66 (bool -> IDENTIFIER .)
+    RPAREN          reduce using rule 66 (bool -> IDENTIFIER .)
+
+
+state 61
+
+    (67) bool -> DIGIT .
+
+    THEN            reduce using rule 67 (bool -> DIGIT .)
+    AND             reduce using rule 67 (bool -> DIGIT .)
+    OR              reduce using rule 67 (bool -> DIGIT .)
+    EQUAL           reduce using rule 67 (bool -> DIGIT .)
+    GREATER         reduce using rule 67 (bool -> DIGIT .)
+    LESS            reduce using rule 67 (bool -> DIGIT .)
+    GREATEQ         reduce using rule 67 (bool -> DIGIT .)
+    LESSEQ          reduce using rule 67 (bool -> DIGIT .)
+    NOT_EQUAL       reduce using rule 67 (bool -> DIGIT .)
+    RPAREN          reduce using rule 67 (bool -> DIGIT .)
+
+
+state 62
+
+    (47) for -> FOR IDENTIFIER . ASSIGN expr TO expr DO statement
+
+    ASSIGN          shift and go to state 96
+
+
+state 63
+
+    (58) var -> IDENTIFIER BRAC .
+
+    ASSIGN          reduce using rule 58 (var -> IDENTIFIER BRAC .)
+    SEMICOLON       reduce using rule 58 (var -> IDENTIFIER BRAC .)
+    PLUS            reduce using rule 58 (var -> IDENTIFIER BRAC .)
+    MINES           reduce using rule 58 (var -> IDENTIFIER BRAC .)
+    MUL             reduce using rule 58 (var -> IDENTIFIER BRAC .)
+    DIVIDE          reduce using rule 58 (var -> IDENTIFIER BRAC .)
+    RBRACKET        reduce using rule 58 (var -> IDENTIFIER BRAC .)
+    CAMMA           reduce using rule 58 (var -> IDENTIFIER BRAC .)
+    RPAREN          reduce using rule 58 (var -> IDENTIFIER BRAC .)
+    TO              reduce using rule 58 (var -> IDENTIFIER BRAC .)
+    DO              reduce using rule 58 (var -> IDENTIFIER BRAC .)
+
+
+state 64
+
+    (59) BRAC -> LBRACKET . expr RBRACKET
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 97
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 65
+
+    (60) BRAC -> epsilon .
+
+    ASSIGN          reduce using rule 60 (BRAC -> epsilon .)
+    SEMICOLON       reduce using rule 60 (BRAC -> epsilon .)
+    PLUS            reduce using rule 60 (BRAC -> epsilon .)
+    MINES           reduce using rule 60 (BRAC -> epsilon .)
+    MUL             reduce using rule 60 (BRAC -> epsilon .)
+    DIVIDE          reduce using rule 60 (BRAC -> epsilon .)
+    RBRACKET        reduce using rule 60 (BRAC -> epsilon .)
+    CAMMA           reduce using rule 60 (BRAC -> epsilon .)
+    RPAREN          reduce using rule 60 (BRAC -> epsilon .)
+    TO              reduce using rule 60 (BRAC -> epsilon .)
+    DO              reduce using rule 60 (BRAC -> epsilon .)
+
+
+state 66
+
+    (48) return -> RETURN SEMICOLON .
+
+    BEGIN           reduce using rule 48 (return -> RETURN SEMICOLON .)
+    PRINT           reduce using rule 48 (return -> RETURN SEMICOLON .)
+    READ            reduce using rule 48 (return -> RETURN SEMICOLON .)
+    IF              reduce using rule 48 (return -> RETURN SEMICOLON .)
+    FOR             reduce using rule 48 (return -> RETURN SEMICOLON .)
+    RETURN          reduce using rule 48 (return -> RETURN SEMICOLON .)
+    CALL            reduce using rule 48 (return -> RETURN SEMICOLON .)
+    IDENTIFIER      reduce using rule 48 (return -> RETURN SEMICOLON .)
+    END             reduce using rule 48 (return -> RETURN SEMICOLON .)
+    ELSE            reduce using rule 48 (return -> RETURN SEMICOLON .)
+
+
+state 67
+
+    (49) call -> CALL IDENTIFIER . LPAREN E RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 98
+
+
+state 68
+
+    (15) proc_decl -> PROCEDURE IDENTIFIER LPAREN F . RPAREN SEMICOLON block
+
+    RPAREN          shift and go to state 99
+
+
+state 69
+
+    (16) F -> format . SEMICOLON F
+    (17) F -> format .
+
+    SEMICOLON       shift and go to state 100
+    RPAREN          reduce using rule 17 (F -> format .)
+
+
+state 70
+
+    (18) F -> epsilon .
+
+    RPAREN          reduce using rule 18 (F -> epsilon .)
+
+
+state 71
+
+    (19) format -> ID . COLON M type
+
+    COLON           shift and go to state 101
+
+
+state 72
+
+    (13) var_decl -> ID COLON type SEMICOLON .
+
+    VAR             reduce using rule 13 (var_decl -> ID COLON type SEMICOLON .)
+    PROCEDURE       reduce using rule 13 (var_decl -> ID COLON type SEMICOLON .)
+    BEGIN           reduce using rule 13 (var_decl -> ID COLON type SEMICOLON .)
+    PRINT           reduce using rule 13 (var_decl -> ID COLON type SEMICOLON .)
+    READ            reduce using rule 13 (var_decl -> ID COLON type SEMICOLON .)
+    IF              reduce using rule 13 (var_decl -> ID COLON type SEMICOLON .)
+    FOR             reduce using rule 13 (var_decl -> ID COLON type SEMICOLON .)
+    RETURN          reduce using rule 13 (var_decl -> ID COLON type SEMICOLON .)
+    CALL            reduce using rule 13 (var_decl -> ID COLON type SEMICOLON .)
+    IDENTIFIER      reduce using rule 13 (var_decl -> ID COLON type SEMICOLON .)
+    END             reduce using rule 13 (var_decl -> ID COLON type SEMICOLON .)
+
+
+state 73
+
+    (25) block -> BEGIN C V . S END SEMICOLON
+    (8) S -> . statement S
+    (9) S -> . epsilon
+    (26) statement -> . block
+    (27) statement -> . print
+    (28) statement -> . read
+    (29) statement -> . asgn
+    (30) statement -> . cond
+    (31) statement -> . for
+    (32) statement -> . return
+    (33) statement -> . call
+    (75) epsilon -> .
+    (25) block -> . BEGIN C V S END SEMICOLON
+    (34) print -> . PRINT LPAREN string E RPAREN SEMICOLON
+    (38) read -> . READ LPAREN string Va RPAREN SEMICOLON
+    (43) asgn -> . var ASSIGN expr SEMICOLON
+    (44) cond -> . IF bool THEN statement EL
+    (47) for -> . FOR IDENTIFIER ASSIGN expr TO expr DO statement
+    (48) return -> . RETURN SEMICOLON
+    (49) call -> . CALL IDENTIFIER LPAREN E RPAREN SEMICOLON
+    (58) var -> . IDENTIFIER BRAC
+
+    END             reduce using rule 75 (epsilon -> .)
+    BEGIN           shift and go to state 28
+    PRINT           shift and go to state 38
+    READ            shift and go to state 39
+    IF              shift and go to state 41
+    FOR             shift and go to state 42
+    RETURN          shift and go to state 44
+    CALL            shift and go to state 45
+    IDENTIFIER      shift and go to state 43
+
+    S                              shift and go to state 102
+    statement                      shift and go to state 51
+    epsilon                        shift and go to state 53
+    block                          shift and go to state 30
+    print                          shift and go to state 31
+    read                           shift and go to state 32
+    asgn                           shift and go to state 33
+    cond                           shift and go to state 34
+    for                            shift and go to state 35
+    return                         shift and go to state 36
+    call                           shift and go to state 37
+    var                            shift and go to state 40
+
+state 74
+
+    (8) S -> statement S .
+
+    END             reduce using rule 8 (S -> statement S .)
+
+
+state 75
+
+    (1) program -> C V P BEGIN statement S END . SEMICOLON
+
+    SEMICOLON       shift and go to state 103
+
+
+state 76
+
+    (34) print -> PRINT LPAREN string . E RPAREN SEMICOLON
+    (35) E -> . expr CAMMA E
+    (36) E -> . expr
+    (37) E -> . epsilon
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (75) epsilon -> .
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    RPAREN          reduce using rule 75 (epsilon -> .)
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    E                              shift and go to state 104
+    expr                           shift and go to state 105
+    epsilon                        shift and go to state 106
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 77
+
+    (42) string -> IDENTIFIER .
+
+    MINES           reduce using rule 42 (string -> IDENTIFIER .)
+    LPAREN          reduce using rule 42 (string -> IDENTIFIER .)
+    DIGIT           reduce using rule 42 (string -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 42 (string -> IDENTIFIER .)
+    RPAREN          reduce using rule 42 (string -> IDENTIFIER .)
+
+
+state 78
+
+    (38) read -> READ LPAREN string . Va RPAREN SEMICOLON
+    (39) Va -> . var CAMMA Va
+    (40) Va -> . expr
+    (41) Va -> . epsilon
+    (58) var -> . IDENTIFIER BRAC
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (75) epsilon -> .
+    (74) integer -> . DIGIT
+
+    IDENTIFIER      shift and go to state 43
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    RPAREN          reduce using rule 75 (epsilon -> .)
+    DIGIT           shift and go to state 26
+
+    Va                             shift and go to state 107
+    var                            shift and go to state 108
+    expr                           shift and go to state 109
+    epsilon                        shift and go to state 110
+    integer                        shift and go to state 81
+
+state 79
+
+    (57) expr -> var .
+
+    SEMICOLON       reduce using rule 57 (expr -> var .)
+    PLUS            reduce using rule 57 (expr -> var .)
+    MINES           reduce using rule 57 (expr -> var .)
+    MUL             reduce using rule 57 (expr -> var .)
+    DIVIDE          reduce using rule 57 (expr -> var .)
+    RBRACKET        reduce using rule 57 (expr -> var .)
+    CAMMA           reduce using rule 57 (expr -> var .)
+    RPAREN          reduce using rule 57 (expr -> var .)
+    TO              reduce using rule 57 (expr -> var .)
+    DO              reduce using rule 57 (expr -> var .)
+
+
+state 80
+
+    (43) asgn -> var ASSIGN expr . SEMICOLON
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+    SEMICOLON       shift and go to state 111
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+
+state 81
+
+    (50) expr -> integer .
+
+    SEMICOLON       reduce using rule 50 (expr -> integer .)
+    PLUS            reduce using rule 50 (expr -> integer .)
+    MINES           reduce using rule 50 (expr -> integer .)
+    MUL             reduce using rule 50 (expr -> integer .)
+    DIVIDE          reduce using rule 50 (expr -> integer .)
+    RBRACKET        reduce using rule 50 (expr -> integer .)
+    CAMMA           reduce using rule 50 (expr -> integer .)
+    RPAREN          reduce using rule 50 (expr -> integer .)
+    TO              reduce using rule 50 (expr -> integer .)
+    DO              reduce using rule 50 (expr -> integer .)
+
+
+state 82
+
+    (51) expr -> MINES . expr
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 116
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 83
+
+    (56) expr -> LPAREN . expr RPAREN
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 117
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 84
+
+    (44) cond -> IF bool THEN . statement EL
+    (26) statement -> . block
+    (27) statement -> . print
+    (28) statement -> . read
+    (29) statement -> . asgn
+    (30) statement -> . cond
+    (31) statement -> . for
+    (32) statement -> . return
+    (33) statement -> . call
+    (25) block -> . BEGIN C V S END SEMICOLON
+    (34) print -> . PRINT LPAREN string E RPAREN SEMICOLON
+    (38) read -> . READ LPAREN string Va RPAREN SEMICOLON
+    (43) asgn -> . var ASSIGN expr SEMICOLON
+    (44) cond -> . IF bool THEN statement EL
+    (47) for -> . FOR IDENTIFIER ASSIGN expr TO expr DO statement
+    (48) return -> . RETURN SEMICOLON
+    (49) call -> . CALL IDENTIFIER LPAREN E RPAREN SEMICOLON
+    (58) var -> . IDENTIFIER BRAC
+
+    BEGIN           shift and go to state 28
+    PRINT           shift and go to state 38
+    READ            shift and go to state 39
+    IF              shift and go to state 41
+    FOR             shift and go to state 42
+    RETURN          shift and go to state 44
+    CALL            shift and go to state 45
+    IDENTIFIER      shift and go to state 43
+
+    statement                      shift and go to state 118
+    block                          shift and go to state 30
+    print                          shift and go to state 31
+    read                           shift and go to state 32
+    asgn                           shift and go to state 33
+    cond                           shift and go to state 34
+    for                            shift and go to state 35
+    return                         shift and go to state 36
+    call                           shift and go to state 37
+    var                            shift and go to state 40
+
+state 85
+
+    (62) bool -> bool AND . bool
+    (61) bool -> . NOT bool
+    (62) bool -> . bool AND bool
+    (63) bool -> . bool OR bool
+    (64) bool -> . bool relop bool
+    (65) bool -> . LPAREN bool RPAREN
+    (66) bool -> . IDENTIFIER
+    (67) bool -> . DIGIT
+
+    NOT             shift and go to state 58
+    LPAREN          shift and go to state 59
+    IDENTIFIER      shift and go to state 60
+    DIGIT           shift and go to state 61
+
+    bool                           shift and go to state 119
+
+state 86
+
+    (63) bool -> bool OR . bool
+    (61) bool -> . NOT bool
+    (62) bool -> . bool AND bool
+    (63) bool -> . bool OR bool
+    (64) bool -> . bool relop bool
+    (65) bool -> . LPAREN bool RPAREN
+    (66) bool -> . IDENTIFIER
+    (67) bool -> . DIGIT
+
+    NOT             shift and go to state 58
+    LPAREN          shift and go to state 59
+    IDENTIFIER      shift and go to state 60
+    DIGIT           shift and go to state 61
+
+    bool                           shift and go to state 120
+
+state 87
+
+    (64) bool -> bool relop . bool
+    (61) bool -> . NOT bool
+    (62) bool -> . bool AND bool
+    (63) bool -> . bool OR bool
+    (64) bool -> . bool relop bool
+    (65) bool -> . LPAREN bool RPAREN
+    (66) bool -> . IDENTIFIER
+    (67) bool -> . DIGIT
+
+    NOT             shift and go to state 58
+    LPAREN          shift and go to state 59
+    IDENTIFIER      shift and go to state 60
+    DIGIT           shift and go to state 61
+
+    bool                           shift and go to state 121
+
+state 88
+
+    (68) relop -> EQUAL .
+
+    NOT             reduce using rule 68 (relop -> EQUAL .)
+    LPAREN          reduce using rule 68 (relop -> EQUAL .)
+    IDENTIFIER      reduce using rule 68 (relop -> EQUAL .)
+    DIGIT           reduce using rule 68 (relop -> EQUAL .)
+
+
+state 89
+
+    (69) relop -> GREATER .
+
+    NOT             reduce using rule 69 (relop -> GREATER .)
+    LPAREN          reduce using rule 69 (relop -> GREATER .)
+    IDENTIFIER      reduce using rule 69 (relop -> GREATER .)
+    DIGIT           reduce using rule 69 (relop -> GREATER .)
+
+
+state 90
+
+    (70) relop -> LESS .
+
+    NOT             reduce using rule 70 (relop -> LESS .)
+    LPAREN          reduce using rule 70 (relop -> LESS .)
+    IDENTIFIER      reduce using rule 70 (relop -> LESS .)
+    DIGIT           reduce using rule 70 (relop -> LESS .)
+
+
+state 91
+
+    (71) relop -> GREATEQ .
+
+    NOT             reduce using rule 71 (relop -> GREATEQ .)
+    LPAREN          reduce using rule 71 (relop -> GREATEQ .)
+    IDENTIFIER      reduce using rule 71 (relop -> GREATEQ .)
+    DIGIT           reduce using rule 71 (relop -> GREATEQ .)
+
+
+state 92
+
+    (72) relop -> LESSEQ .
+
+    NOT             reduce using rule 72 (relop -> LESSEQ .)
+    LPAREN          reduce using rule 72 (relop -> LESSEQ .)
+    IDENTIFIER      reduce using rule 72 (relop -> LESSEQ .)
+    DIGIT           reduce using rule 72 (relop -> LESSEQ .)
+
+
+state 93
+
+    (73) relop -> NOT_EQUAL .
+
+    NOT             reduce using rule 73 (relop -> NOT_EQUAL .)
+    LPAREN          reduce using rule 73 (relop -> NOT_EQUAL .)
+    IDENTIFIER      reduce using rule 73 (relop -> NOT_EQUAL .)
+    DIGIT           reduce using rule 73 (relop -> NOT_EQUAL .)
+
+
+state 94
+
+    (61) bool -> NOT bool .
+    (62) bool -> bool . AND bool
+    (63) bool -> bool . OR bool
+    (64) bool -> bool . relop bool
+    (68) relop -> . EQUAL
+    (69) relop -> . GREATER
+    (70) relop -> . LESS
+    (71) relop -> . GREATEQ
+    (72) relop -> . LESSEQ
+    (73) relop -> . NOT_EQUAL
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATEQ resolved as shift
+  ! shift/reduce conflict for LESSEQ resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+    THEN            reduce using rule 61 (bool -> NOT bool .)
+    RPAREN          reduce using rule 61 (bool -> NOT bool .)
+    AND             shift and go to state 85
+    OR              shift and go to state 86
+    EQUAL           shift and go to state 88
+    GREATER         shift and go to state 89
+    LESS            shift and go to state 90
+    GREATEQ         shift and go to state 91
+    LESSEQ          shift and go to state 92
+    NOT_EQUAL       shift and go to state 93
+
+  ! AND             [ reduce using rule 61 (bool -> NOT bool .) ]
+  ! OR              [ reduce using rule 61 (bool -> NOT bool .) ]
+  ! EQUAL           [ reduce using rule 61 (bool -> NOT bool .) ]
+  ! GREATER         [ reduce using rule 61 (bool -> NOT bool .) ]
+  ! LESS            [ reduce using rule 61 (bool -> NOT bool .) ]
+  ! GREATEQ         [ reduce using rule 61 (bool -> NOT bool .) ]
+  ! LESSEQ          [ reduce using rule 61 (bool -> NOT bool .) ]
+  ! NOT_EQUAL       [ reduce using rule 61 (bool -> NOT bool .) ]
+
+    relop                          shift and go to state 87
+
+state 95
+
+    (65) bool -> LPAREN bool . RPAREN
+    (62) bool -> bool . AND bool
+    (63) bool -> bool . OR bool
+    (64) bool -> bool . relop bool
+    (68) relop -> . EQUAL
+    (69) relop -> . GREATER
+    (70) relop -> . LESS
+    (71) relop -> . GREATEQ
+    (72) relop -> . LESSEQ
+    (73) relop -> . NOT_EQUAL
+
+    RPAREN          shift and go to state 122
+    AND             shift and go to state 85
+    OR              shift and go to state 86
+    EQUAL           shift and go to state 88
+    GREATER         shift and go to state 89
+    LESS            shift and go to state 90
+    GREATEQ         shift and go to state 91
+    LESSEQ          shift and go to state 92
+    NOT_EQUAL       shift and go to state 93
+
+    relop                          shift and go to state 87
+
+state 96
+
+    (47) for -> FOR IDENTIFIER ASSIGN . expr TO expr DO statement
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 123
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 97
+
+    (59) BRAC -> LBRACKET expr . RBRACKET
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+    RBRACKET        shift and go to state 124
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+
+state 98
+
+    (49) call -> CALL IDENTIFIER LPAREN . E RPAREN SEMICOLON
+    (35) E -> . expr CAMMA E
+    (36) E -> . expr
+    (37) E -> . epsilon
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (75) epsilon -> .
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    RPAREN          reduce using rule 75 (epsilon -> .)
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    E                              shift and go to state 125
+    expr                           shift and go to state 105
+    epsilon                        shift and go to state 106
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 99
+
+    (15) proc_decl -> PROCEDURE IDENTIFIER LPAREN F RPAREN . SEMICOLON block
+
+    SEMICOLON       shift and go to state 126
+
+
+state 100
+
+    (16) F -> format SEMICOLON . F
+    (16) F -> . format SEMICOLON F
+    (17) F -> . format
+    (18) F -> . epsilon
+    (19) format -> . ID COLON M type
+    (75) epsilon -> .
+    (11) ID -> . IDENTIFIER CAMMA ID
+    (12) ID -> . IDENTIFIER
+
+    RPAREN          reduce using rule 75 (epsilon -> .)
+    IDENTIFIER      shift and go to state 10
+
+    format                         shift and go to state 69
+    F                              shift and go to state 127
+    epsilon                        shift and go to state 70
+    ID                             shift and go to state 71
+
+state 101
+
+    (19) format -> ID COLON . M type
+    (20) M -> . mode
+    (21) M -> . epsilon
+    (22) mode -> . IN
+    (23) mode -> . OUT
+    (24) mode -> . IN OUT
+    (75) epsilon -> .
+
+    IN              shift and go to state 131
+    OUT             shift and go to state 132
+    INTEGER         reduce using rule 75 (epsilon -> .)
+
+    M                              shift and go to state 128
+    mode                           shift and go to state 129
+    epsilon                        shift and go to state 130
+
+state 102
+
+    (25) block -> BEGIN C V S . END SEMICOLON
+
+    END             shift and go to state 133
+
+
+state 103
+
+    (1) program -> C V P BEGIN statement S END SEMICOLON .
+
+    $end            reduce using rule 1 (program -> C V P BEGIN statement S END SEMICOLON .)
+
+
+state 104
+
+    (34) print -> PRINT LPAREN string E . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 134
+
+
+state 105
+
+    (35) E -> expr . CAMMA E
+    (36) E -> expr .
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+    CAMMA           shift and go to state 135
+    RPAREN          reduce using rule 36 (E -> expr .)
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+
+state 106
+
+    (37) E -> epsilon .
+
+    RPAREN          reduce using rule 37 (E -> epsilon .)
+
+
+state 107
+
+    (38) read -> READ LPAREN string Va . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 136
+
+
+state 108
+
+    (39) Va -> var . CAMMA Va
+    (57) expr -> var .
+
+    CAMMA           shift and go to state 137
+    PLUS            reduce using rule 57 (expr -> var .)
+    MINES           reduce using rule 57 (expr -> var .)
+    MUL             reduce using rule 57 (expr -> var .)
+    DIVIDE          reduce using rule 57 (expr -> var .)
+    RPAREN          reduce using rule 57 (expr -> var .)
+
+
+state 109
+
+    (40) Va -> expr .
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+    RPAREN          reduce using rule 40 (Va -> expr .)
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+
+state 110
+
+    (41) Va -> epsilon .
+
+    RPAREN          reduce using rule 41 (Va -> epsilon .)
+
+
+state 111
+
+    (43) asgn -> var ASSIGN expr SEMICOLON .
+
+    BEGIN           reduce using rule 43 (asgn -> var ASSIGN expr SEMICOLON .)
+    PRINT           reduce using rule 43 (asgn -> var ASSIGN expr SEMICOLON .)
+    READ            reduce using rule 43 (asgn -> var ASSIGN expr SEMICOLON .)
+    IF              reduce using rule 43 (asgn -> var ASSIGN expr SEMICOLON .)
+    FOR             reduce using rule 43 (asgn -> var ASSIGN expr SEMICOLON .)
+    RETURN          reduce using rule 43 (asgn -> var ASSIGN expr SEMICOLON .)
+    CALL            reduce using rule 43 (asgn -> var ASSIGN expr SEMICOLON .)
+    IDENTIFIER      reduce using rule 43 (asgn -> var ASSIGN expr SEMICOLON .)
+    END             reduce using rule 43 (asgn -> var ASSIGN expr SEMICOLON .)
+    ELSE            reduce using rule 43 (asgn -> var ASSIGN expr SEMICOLON .)
+
+
+state 112
+
+    (52) expr -> expr PLUS . expr
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 138
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 113
+
+    (53) expr -> expr MINES . expr
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 139
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 114
+
+    (54) expr -> expr MUL . expr
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 140
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 115
+
+    (55) expr -> expr DIVIDE . expr
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 141
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 116
+
+    (51) expr -> MINES expr .
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINES resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    SEMICOLON       reduce using rule 51 (expr -> MINES expr .)
+    RBRACKET        reduce using rule 51 (expr -> MINES expr .)
+    CAMMA           reduce using rule 51 (expr -> MINES expr .)
+    RPAREN          reduce using rule 51 (expr -> MINES expr .)
+    TO              reduce using rule 51 (expr -> MINES expr .)
+    DO              reduce using rule 51 (expr -> MINES expr .)
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+  ! PLUS            [ reduce using rule 51 (expr -> MINES expr .) ]
+  ! MINES           [ reduce using rule 51 (expr -> MINES expr .) ]
+  ! MUL             [ reduce using rule 51 (expr -> MINES expr .) ]
+  ! DIVIDE          [ reduce using rule 51 (expr -> MINES expr .) ]
+
+
+state 117
+
+    (56) expr -> LPAREN expr . RPAREN
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+    RPAREN          shift and go to state 142
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+
+state 118
+
+    (44) cond -> IF bool THEN statement . EL
+    (45) EL -> . ELSE statement
+    (46) EL -> . epsilon
+    (75) epsilon -> .
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 144
+    BEGIN           reduce using rule 75 (epsilon -> .)
+    PRINT           reduce using rule 75 (epsilon -> .)
+    READ            reduce using rule 75 (epsilon -> .)
+    IF              reduce using rule 75 (epsilon -> .)
+    FOR             reduce using rule 75 (epsilon -> .)
+    RETURN          reduce using rule 75 (epsilon -> .)
+    CALL            reduce using rule 75 (epsilon -> .)
+    IDENTIFIER      reduce using rule 75 (epsilon -> .)
+    END             reduce using rule 75 (epsilon -> .)
+
+  ! ELSE            [ reduce using rule 75 (epsilon -> .) ]
+
+    EL                             shift and go to state 143
+    epsilon                        shift and go to state 145
+
+state 119
+
+    (62) bool -> bool AND bool .
+    (62) bool -> bool . AND bool
+    (63) bool -> bool . OR bool
+    (64) bool -> bool . relop bool
+    (68) relop -> . EQUAL
+    (69) relop -> . GREATER
+    (70) relop -> . LESS
+    (71) relop -> . GREATEQ
+    (72) relop -> . LESSEQ
+    (73) relop -> . NOT_EQUAL
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATEQ resolved as shift
+  ! shift/reduce conflict for LESSEQ resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+    THEN            reduce using rule 62 (bool -> bool AND bool .)
+    RPAREN          reduce using rule 62 (bool -> bool AND bool .)
+    AND             shift and go to state 85
+    OR              shift and go to state 86
+    EQUAL           shift and go to state 88
+    GREATER         shift and go to state 89
+    LESS            shift and go to state 90
+    GREATEQ         shift and go to state 91
+    LESSEQ          shift and go to state 92
+    NOT_EQUAL       shift and go to state 93
+
+  ! AND             [ reduce using rule 62 (bool -> bool AND bool .) ]
+  ! OR              [ reduce using rule 62 (bool -> bool AND bool .) ]
+  ! EQUAL           [ reduce using rule 62 (bool -> bool AND bool .) ]
+  ! GREATER         [ reduce using rule 62 (bool -> bool AND bool .) ]
+  ! LESS            [ reduce using rule 62 (bool -> bool AND bool .) ]
+  ! GREATEQ         [ reduce using rule 62 (bool -> bool AND bool .) ]
+  ! LESSEQ          [ reduce using rule 62 (bool -> bool AND bool .) ]
+  ! NOT_EQUAL       [ reduce using rule 62 (bool -> bool AND bool .) ]
+
+    relop                          shift and go to state 87
+
+state 120
+
+    (63) bool -> bool OR bool .
+    (62) bool -> bool . AND bool
+    (63) bool -> bool . OR bool
+    (64) bool -> bool . relop bool
+    (68) relop -> . EQUAL
+    (69) relop -> . GREATER
+    (70) relop -> . LESS
+    (71) relop -> . GREATEQ
+    (72) relop -> . LESSEQ
+    (73) relop -> . NOT_EQUAL
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATEQ resolved as shift
+  ! shift/reduce conflict for LESSEQ resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+    THEN            reduce using rule 63 (bool -> bool OR bool .)
+    RPAREN          reduce using rule 63 (bool -> bool OR bool .)
+    AND             shift and go to state 85
+    OR              shift and go to state 86
+    EQUAL           shift and go to state 88
+    GREATER         shift and go to state 89
+    LESS            shift and go to state 90
+    GREATEQ         shift and go to state 91
+    LESSEQ          shift and go to state 92
+    NOT_EQUAL       shift and go to state 93
+
+  ! AND             [ reduce using rule 63 (bool -> bool OR bool .) ]
+  ! OR              [ reduce using rule 63 (bool -> bool OR bool .) ]
+  ! EQUAL           [ reduce using rule 63 (bool -> bool OR bool .) ]
+  ! GREATER         [ reduce using rule 63 (bool -> bool OR bool .) ]
+  ! LESS            [ reduce using rule 63 (bool -> bool OR bool .) ]
+  ! GREATEQ         [ reduce using rule 63 (bool -> bool OR bool .) ]
+  ! LESSEQ          [ reduce using rule 63 (bool -> bool OR bool .) ]
+  ! NOT_EQUAL       [ reduce using rule 63 (bool -> bool OR bool .) ]
+
+    relop                          shift and go to state 87
+
+state 121
+
+    (64) bool -> bool relop bool .
+    (62) bool -> bool . AND bool
+    (63) bool -> bool . OR bool
+    (64) bool -> bool . relop bool
+    (68) relop -> . EQUAL
+    (69) relop -> . GREATER
+    (70) relop -> . LESS
+    (71) relop -> . GREATEQ
+    (72) relop -> . LESSEQ
+    (73) relop -> . NOT_EQUAL
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATEQ resolved as shift
+  ! shift/reduce conflict for LESSEQ resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+    THEN            reduce using rule 64 (bool -> bool relop bool .)
+    RPAREN          reduce using rule 64 (bool -> bool relop bool .)
+    AND             shift and go to state 85
+    OR              shift and go to state 86
+    EQUAL           shift and go to state 88
+    GREATER         shift and go to state 89
+    LESS            shift and go to state 90
+    GREATEQ         shift and go to state 91
+    LESSEQ          shift and go to state 92
+    NOT_EQUAL       shift and go to state 93
+
+  ! AND             [ reduce using rule 64 (bool -> bool relop bool .) ]
+  ! OR              [ reduce using rule 64 (bool -> bool relop bool .) ]
+  ! EQUAL           [ reduce using rule 64 (bool -> bool relop bool .) ]
+  ! GREATER         [ reduce using rule 64 (bool -> bool relop bool .) ]
+  ! LESS            [ reduce using rule 64 (bool -> bool relop bool .) ]
+  ! GREATEQ         [ reduce using rule 64 (bool -> bool relop bool .) ]
+  ! LESSEQ          [ reduce using rule 64 (bool -> bool relop bool .) ]
+  ! NOT_EQUAL       [ reduce using rule 64 (bool -> bool relop bool .) ]
+
+    relop                          shift and go to state 87
+
+state 122
+
+    (65) bool -> LPAREN bool RPAREN .
+
+    THEN            reduce using rule 65 (bool -> LPAREN bool RPAREN .)
+    AND             reduce using rule 65 (bool -> LPAREN bool RPAREN .)
+    OR              reduce using rule 65 (bool -> LPAREN bool RPAREN .)
+    EQUAL           reduce using rule 65 (bool -> LPAREN bool RPAREN .)
+    GREATER         reduce using rule 65 (bool -> LPAREN bool RPAREN .)
+    LESS            reduce using rule 65 (bool -> LPAREN bool RPAREN .)
+    GREATEQ         reduce using rule 65 (bool -> LPAREN bool RPAREN .)
+    LESSEQ          reduce using rule 65 (bool -> LPAREN bool RPAREN .)
+    NOT_EQUAL       reduce using rule 65 (bool -> LPAREN bool RPAREN .)
+    RPAREN          reduce using rule 65 (bool -> LPAREN bool RPAREN .)
+
+
+state 123
+
+    (47) for -> FOR IDENTIFIER ASSIGN expr . TO expr DO statement
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+    TO              shift and go to state 146
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+
+state 124
+
+    (59) BRAC -> LBRACKET expr RBRACKET .
+
+    ASSIGN          reduce using rule 59 (BRAC -> LBRACKET expr RBRACKET .)
+    SEMICOLON       reduce using rule 59 (BRAC -> LBRACKET expr RBRACKET .)
+    PLUS            reduce using rule 59 (BRAC -> LBRACKET expr RBRACKET .)
+    MINES           reduce using rule 59 (BRAC -> LBRACKET expr RBRACKET .)
+    MUL             reduce using rule 59 (BRAC -> LBRACKET expr RBRACKET .)
+    DIVIDE          reduce using rule 59 (BRAC -> LBRACKET expr RBRACKET .)
+    RBRACKET        reduce using rule 59 (BRAC -> LBRACKET expr RBRACKET .)
+    CAMMA           reduce using rule 59 (BRAC -> LBRACKET expr RBRACKET .)
+    RPAREN          reduce using rule 59 (BRAC -> LBRACKET expr RBRACKET .)
+    TO              reduce using rule 59 (BRAC -> LBRACKET expr RBRACKET .)
+    DO              reduce using rule 59 (BRAC -> LBRACKET expr RBRACKET .)
+
+
+state 125
+
+    (49) call -> CALL IDENTIFIER LPAREN E . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 147
+
+
+state 126
+
+    (15) proc_decl -> PROCEDURE IDENTIFIER LPAREN F RPAREN SEMICOLON . block
+    (25) block -> . BEGIN C V S END SEMICOLON
+
+    BEGIN           shift and go to state 28
+
+    block                          shift and go to state 148
+
+state 127
+
+    (16) F -> format SEMICOLON F .
+
+    RPAREN          reduce using rule 16 (F -> format SEMICOLON F .)
+
+
+state 128
+
+    (19) format -> ID COLON M . type
+    (14) type -> . INTEGER
+
+    INTEGER         shift and go to state 48
+
+    type                           shift and go to state 149
+
+state 129
+
+    (20) M -> mode .
+
+    INTEGER         reduce using rule 20 (M -> mode .)
+
+
+state 130
+
+    (21) M -> epsilon .
+
+    INTEGER         reduce using rule 21 (M -> epsilon .)
+
+
+state 131
+
+    (22) mode -> IN .
+    (24) mode -> IN . OUT
+
+    INTEGER         reduce using rule 22 (mode -> IN .)
+    OUT             shift and go to state 150
+
+
+state 132
+
+    (23) mode -> OUT .
+
+    INTEGER         reduce using rule 23 (mode -> OUT .)
+
+
+state 133
+
+    (25) block -> BEGIN C V S END . SEMICOLON
+
+    SEMICOLON       shift and go to state 151
+
+
+state 134
+
+    (34) print -> PRINT LPAREN string E RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 152
+
+
+state 135
+
+    (35) E -> expr CAMMA . E
+    (35) E -> . expr CAMMA E
+    (36) E -> . expr
+    (37) E -> . epsilon
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (75) epsilon -> .
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    RPAREN          reduce using rule 75 (epsilon -> .)
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 105
+    E                              shift and go to state 153
+    epsilon                        shift and go to state 106
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 136
+
+    (38) read -> READ LPAREN string Va RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 154
+
+
+state 137
+
+    (39) Va -> var CAMMA . Va
+    (39) Va -> . var CAMMA Va
+    (40) Va -> . expr
+    (41) Va -> . epsilon
+    (58) var -> . IDENTIFIER BRAC
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (75) epsilon -> .
+    (74) integer -> . DIGIT
+
+    IDENTIFIER      shift and go to state 43
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    RPAREN          reduce using rule 75 (epsilon -> .)
+    DIGIT           shift and go to state 26
+
+    var                            shift and go to state 108
+    Va                             shift and go to state 155
+    expr                           shift and go to state 109
+    epsilon                        shift and go to state 110
+    integer                        shift and go to state 81
+
+state 138
+
+    (52) expr -> expr PLUS expr .
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINES resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    SEMICOLON       reduce using rule 52 (expr -> expr PLUS expr .)
+    RBRACKET        reduce using rule 52 (expr -> expr PLUS expr .)
+    CAMMA           reduce using rule 52 (expr -> expr PLUS expr .)
+    RPAREN          reduce using rule 52 (expr -> expr PLUS expr .)
+    TO              reduce using rule 52 (expr -> expr PLUS expr .)
+    DO              reduce using rule 52 (expr -> expr PLUS expr .)
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+  ! PLUS            [ reduce using rule 52 (expr -> expr PLUS expr .) ]
+  ! MINES           [ reduce using rule 52 (expr -> expr PLUS expr .) ]
+  ! MUL             [ reduce using rule 52 (expr -> expr PLUS expr .) ]
+  ! DIVIDE          [ reduce using rule 52 (expr -> expr PLUS expr .) ]
+
+
+state 139
+
+    (53) expr -> expr MINES expr .
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINES resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    SEMICOLON       reduce using rule 53 (expr -> expr MINES expr .)
+    RBRACKET        reduce using rule 53 (expr -> expr MINES expr .)
+    CAMMA           reduce using rule 53 (expr -> expr MINES expr .)
+    RPAREN          reduce using rule 53 (expr -> expr MINES expr .)
+    TO              reduce using rule 53 (expr -> expr MINES expr .)
+    DO              reduce using rule 53 (expr -> expr MINES expr .)
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+  ! PLUS            [ reduce using rule 53 (expr -> expr MINES expr .) ]
+  ! MINES           [ reduce using rule 53 (expr -> expr MINES expr .) ]
+  ! MUL             [ reduce using rule 53 (expr -> expr MINES expr .) ]
+  ! DIVIDE          [ reduce using rule 53 (expr -> expr MINES expr .) ]
+
+
+state 140
+
+    (54) expr -> expr MUL expr .
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINES resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    SEMICOLON       reduce using rule 54 (expr -> expr MUL expr .)
+    RBRACKET        reduce using rule 54 (expr -> expr MUL expr .)
+    CAMMA           reduce using rule 54 (expr -> expr MUL expr .)
+    RPAREN          reduce using rule 54 (expr -> expr MUL expr .)
+    TO              reduce using rule 54 (expr -> expr MUL expr .)
+    DO              reduce using rule 54 (expr -> expr MUL expr .)
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+  ! PLUS            [ reduce using rule 54 (expr -> expr MUL expr .) ]
+  ! MINES           [ reduce using rule 54 (expr -> expr MUL expr .) ]
+  ! MUL             [ reduce using rule 54 (expr -> expr MUL expr .) ]
+  ! DIVIDE          [ reduce using rule 54 (expr -> expr MUL expr .) ]
+
+
+state 141
+
+    (55) expr -> expr DIVIDE expr .
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINES resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    SEMICOLON       reduce using rule 55 (expr -> expr DIVIDE expr .)
+    RBRACKET        reduce using rule 55 (expr -> expr DIVIDE expr .)
+    CAMMA           reduce using rule 55 (expr -> expr DIVIDE expr .)
+    RPAREN          reduce using rule 55 (expr -> expr DIVIDE expr .)
+    TO              reduce using rule 55 (expr -> expr DIVIDE expr .)
+    DO              reduce using rule 55 (expr -> expr DIVIDE expr .)
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+  ! PLUS            [ reduce using rule 55 (expr -> expr DIVIDE expr .) ]
+  ! MINES           [ reduce using rule 55 (expr -> expr DIVIDE expr .) ]
+  ! MUL             [ reduce using rule 55 (expr -> expr DIVIDE expr .) ]
+  ! DIVIDE          [ reduce using rule 55 (expr -> expr DIVIDE expr .) ]
+
+
+state 142
+
+    (56) expr -> LPAREN expr RPAREN .
+
+    SEMICOLON       reduce using rule 56 (expr -> LPAREN expr RPAREN .)
+    PLUS            reduce using rule 56 (expr -> LPAREN expr RPAREN .)
+    MINES           reduce using rule 56 (expr -> LPAREN expr RPAREN .)
+    MUL             reduce using rule 56 (expr -> LPAREN expr RPAREN .)
+    DIVIDE          reduce using rule 56 (expr -> LPAREN expr RPAREN .)
+    RBRACKET        reduce using rule 56 (expr -> LPAREN expr RPAREN .)
+    CAMMA           reduce using rule 56 (expr -> LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 56 (expr -> LPAREN expr RPAREN .)
+    TO              reduce using rule 56 (expr -> LPAREN expr RPAREN .)
+    DO              reduce using rule 56 (expr -> LPAREN expr RPAREN .)
+
+
+state 143
+
+    (44) cond -> IF bool THEN statement EL .
+
+    BEGIN           reduce using rule 44 (cond -> IF bool THEN statement EL .)
+    PRINT           reduce using rule 44 (cond -> IF bool THEN statement EL .)
+    READ            reduce using rule 44 (cond -> IF bool THEN statement EL .)
+    IF              reduce using rule 44 (cond -> IF bool THEN statement EL .)
+    FOR             reduce using rule 44 (cond -> IF bool THEN statement EL .)
+    RETURN          reduce using rule 44 (cond -> IF bool THEN statement EL .)
+    CALL            reduce using rule 44 (cond -> IF bool THEN statement EL .)
+    IDENTIFIER      reduce using rule 44 (cond -> IF bool THEN statement EL .)
+    END             reduce using rule 44 (cond -> IF bool THEN statement EL .)
+    ELSE            reduce using rule 44 (cond -> IF bool THEN statement EL .)
+
+
+state 144
+
+    (45) EL -> ELSE . statement
+    (26) statement -> . block
+    (27) statement -> . print
+    (28) statement -> . read
+    (29) statement -> . asgn
+    (30) statement -> . cond
+    (31) statement -> . for
+    (32) statement -> . return
+    (33) statement -> . call
+    (25) block -> . BEGIN C V S END SEMICOLON
+    (34) print -> . PRINT LPAREN string E RPAREN SEMICOLON
+    (38) read -> . READ LPAREN string Va RPAREN SEMICOLON
+    (43) asgn -> . var ASSIGN expr SEMICOLON
+    (44) cond -> . IF bool THEN statement EL
+    (47) for -> . FOR IDENTIFIER ASSIGN expr TO expr DO statement
+    (48) return -> . RETURN SEMICOLON
+    (49) call -> . CALL IDENTIFIER LPAREN E RPAREN SEMICOLON
+    (58) var -> . IDENTIFIER BRAC
+
+    BEGIN           shift and go to state 28
+    PRINT           shift and go to state 38
+    READ            shift and go to state 39
+    IF              shift and go to state 41
+    FOR             shift and go to state 42
+    RETURN          shift and go to state 44
+    CALL            shift and go to state 45
+    IDENTIFIER      shift and go to state 43
+
+    statement                      shift and go to state 156
+    block                          shift and go to state 30
+    print                          shift and go to state 31
+    read                           shift and go to state 32
+    asgn                           shift and go to state 33
+    cond                           shift and go to state 34
+    for                            shift and go to state 35
+    return                         shift and go to state 36
+    call                           shift and go to state 37
+    var                            shift and go to state 40
+
+state 145
+
+    (46) EL -> epsilon .
+
+    ELSE            reduce using rule 46 (EL -> epsilon .)
+    BEGIN           reduce using rule 46 (EL -> epsilon .)
+    PRINT           reduce using rule 46 (EL -> epsilon .)
+    READ            reduce using rule 46 (EL -> epsilon .)
+    IF              reduce using rule 46 (EL -> epsilon .)
+    FOR             reduce using rule 46 (EL -> epsilon .)
+    RETURN          reduce using rule 46 (EL -> epsilon .)
+    CALL            reduce using rule 46 (EL -> epsilon .)
+    IDENTIFIER      reduce using rule 46 (EL -> epsilon .)
+    END             reduce using rule 46 (EL -> epsilon .)
+
+
+state 146
+
+    (47) for -> FOR IDENTIFIER ASSIGN expr TO . expr DO statement
+    (50) expr -> . integer
+    (51) expr -> . MINES expr
+    (52) expr -> . expr PLUS expr
+    (53) expr -> . expr MINES expr
+    (54) expr -> . expr MUL expr
+    (55) expr -> . expr DIVIDE expr
+    (56) expr -> . LPAREN expr RPAREN
+    (57) expr -> . var
+    (74) integer -> . DIGIT
+    (58) var -> . IDENTIFIER BRAC
+
+    MINES           shift and go to state 82
+    LPAREN          shift and go to state 83
+    DIGIT           shift and go to state 26
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 157
+    integer                        shift and go to state 81
+    var                            shift and go to state 79
+
+state 147
+
+    (49) call -> CALL IDENTIFIER LPAREN E RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 158
+
+
+state 148
+
+    (15) proc_decl -> PROCEDURE IDENTIFIER LPAREN F RPAREN SEMICOLON block .
+
+    PROCEDURE       reduce using rule 15 (proc_decl -> PROCEDURE IDENTIFIER LPAREN F RPAREN SEMICOLON block .)
+    BEGIN           reduce using rule 15 (proc_decl -> PROCEDURE IDENTIFIER LPAREN F RPAREN SEMICOLON block .)
+
+
+state 149
+
+    (19) format -> ID COLON M type .
+
+    SEMICOLON       reduce using rule 19 (format -> ID COLON M type .)
+    RPAREN          reduce using rule 19 (format -> ID COLON M type .)
+
+
+state 150
+
+    (24) mode -> IN OUT .
+
+    INTEGER         reduce using rule 24 (mode -> IN OUT .)
+
+
+state 151
+
+    (25) block -> BEGIN C V S END SEMICOLON .
+
+    BEGIN           reduce using rule 25 (block -> BEGIN C V S END SEMICOLON .)
+    PRINT           reduce using rule 25 (block -> BEGIN C V S END SEMICOLON .)
+    READ            reduce using rule 25 (block -> BEGIN C V S END SEMICOLON .)
+    IF              reduce using rule 25 (block -> BEGIN C V S END SEMICOLON .)
+    FOR             reduce using rule 25 (block -> BEGIN C V S END SEMICOLON .)
+    RETURN          reduce using rule 25 (block -> BEGIN C V S END SEMICOLON .)
+    CALL            reduce using rule 25 (block -> BEGIN C V S END SEMICOLON .)
+    IDENTIFIER      reduce using rule 25 (block -> BEGIN C V S END SEMICOLON .)
+    END             reduce using rule 25 (block -> BEGIN C V S END SEMICOLON .)
+    ELSE            reduce using rule 25 (block -> BEGIN C V S END SEMICOLON .)
+    PROCEDURE       reduce using rule 25 (block -> BEGIN C V S END SEMICOLON .)
+
+
+state 152
+
+    (34) print -> PRINT LPAREN string E RPAREN SEMICOLON .
+
+    BEGIN           reduce using rule 34 (print -> PRINT LPAREN string E RPAREN SEMICOLON .)
+    PRINT           reduce using rule 34 (print -> PRINT LPAREN string E RPAREN SEMICOLON .)
+    READ            reduce using rule 34 (print -> PRINT LPAREN string E RPAREN SEMICOLON .)
+    IF              reduce using rule 34 (print -> PRINT LPAREN string E RPAREN SEMICOLON .)
+    FOR             reduce using rule 34 (print -> PRINT LPAREN string E RPAREN SEMICOLON .)
+    RETURN          reduce using rule 34 (print -> PRINT LPAREN string E RPAREN SEMICOLON .)
+    CALL            reduce using rule 34 (print -> PRINT LPAREN string E RPAREN SEMICOLON .)
+    IDENTIFIER      reduce using rule 34 (print -> PRINT LPAREN string E RPAREN SEMICOLON .)
+    END             reduce using rule 34 (print -> PRINT LPAREN string E RPAREN SEMICOLON .)
+    ELSE            reduce using rule 34 (print -> PRINT LPAREN string E RPAREN SEMICOLON .)
+
+
+state 153
+
+    (35) E -> expr CAMMA E .
+
+    RPAREN          reduce using rule 35 (E -> expr CAMMA E .)
+
+
+state 154
+
+    (38) read -> READ LPAREN string Va RPAREN SEMICOLON .
+
+    BEGIN           reduce using rule 38 (read -> READ LPAREN string Va RPAREN SEMICOLON .)
+    PRINT           reduce using rule 38 (read -> READ LPAREN string Va RPAREN SEMICOLON .)
+    READ            reduce using rule 38 (read -> READ LPAREN string Va RPAREN SEMICOLON .)
+    IF              reduce using rule 38 (read -> READ LPAREN string Va RPAREN SEMICOLON .)
+    FOR             reduce using rule 38 (read -> READ LPAREN string Va RPAREN SEMICOLON .)
+    RETURN          reduce using rule 38 (read -> READ LPAREN string Va RPAREN SEMICOLON .)
+    CALL            reduce using rule 38 (read -> READ LPAREN string Va RPAREN SEMICOLON .)
+    IDENTIFIER      reduce using rule 38 (read -> READ LPAREN string Va RPAREN SEMICOLON .)
+    END             reduce using rule 38 (read -> READ LPAREN string Va RPAREN SEMICOLON .)
+    ELSE            reduce using rule 38 (read -> READ LPAREN string Va RPAREN SEMICOLON .)
+
+
+state 155
+
+    (39) Va -> var CAMMA Va .
+
+    RPAREN          reduce using rule 39 (Va -> var CAMMA Va .)
+
+
+state 156
+
+    (45) EL -> ELSE statement .
+
+    ELSE            reduce using rule 45 (EL -> ELSE statement .)
+    BEGIN           reduce using rule 45 (EL -> ELSE statement .)
+    PRINT           reduce using rule 45 (EL -> ELSE statement .)
+    READ            reduce using rule 45 (EL -> ELSE statement .)
+    IF              reduce using rule 45 (EL -> ELSE statement .)
+    FOR             reduce using rule 45 (EL -> ELSE statement .)
+    RETURN          reduce using rule 45 (EL -> ELSE statement .)
+    CALL            reduce using rule 45 (EL -> ELSE statement .)
+    IDENTIFIER      reduce using rule 45 (EL -> ELSE statement .)
+    END             reduce using rule 45 (EL -> ELSE statement .)
+
+
+state 157
+
+    (47) for -> FOR IDENTIFIER ASSIGN expr TO expr . DO statement
+    (52) expr -> expr . PLUS expr
+    (53) expr -> expr . MINES expr
+    (54) expr -> expr . MUL expr
+    (55) expr -> expr . DIVIDE expr
+
+    DO              shift and go to state 159
+    PLUS            shift and go to state 112
+    MINES           shift and go to state 113
+    MUL             shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+
+state 158
+
+    (49) call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON .
+
+    BEGIN           reduce using rule 49 (call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON .)
+    PRINT           reduce using rule 49 (call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON .)
+    READ            reduce using rule 49 (call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON .)
+    IF              reduce using rule 49 (call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON .)
+    FOR             reduce using rule 49 (call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON .)
+    RETURN          reduce using rule 49 (call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON .)
+    CALL            reduce using rule 49 (call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON .)
+    IDENTIFIER      reduce using rule 49 (call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON .)
+    END             reduce using rule 49 (call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON .)
+    ELSE            reduce using rule 49 (call -> CALL IDENTIFIER LPAREN E RPAREN SEMICOLON .)
+
+
+state 159
+
+    (47) for -> FOR IDENTIFIER ASSIGN expr TO expr DO . statement
+    (26) statement -> . block
+    (27) statement -> . print
+    (28) statement -> . read
+    (29) statement -> . asgn
+    (30) statement -> . cond
+    (31) statement -> . for
+    (32) statement -> . return
+    (33) statement -> . call
+    (25) block -> . BEGIN C V S END SEMICOLON
+    (34) print -> . PRINT LPAREN string E RPAREN SEMICOLON
+    (38) read -> . READ LPAREN string Va RPAREN SEMICOLON
+    (43) asgn -> . var ASSIGN expr SEMICOLON
+    (44) cond -> . IF bool THEN statement EL
+    (47) for -> . FOR IDENTIFIER ASSIGN expr TO expr DO statement
+    (48) return -> . RETURN SEMICOLON
+    (49) call -> . CALL IDENTIFIER LPAREN E RPAREN SEMICOLON
+    (58) var -> . IDENTIFIER BRAC
+
+    BEGIN           shift and go to state 28
+    PRINT           shift and go to state 38
+    READ            shift and go to state 39
+    IF              shift and go to state 41
+    FOR             shift and go to state 42
+    RETURN          shift and go to state 44
+    CALL            shift and go to state 45
+    IDENTIFIER      shift and go to state 43
+
+    statement                      shift and go to state 160
+    block                          shift and go to state 30
+    print                          shift and go to state 31
+    read                           shift and go to state 32
+    asgn                           shift and go to state 33
+    cond                           shift and go to state 34
+    for                            shift and go to state 35
+    return                         shift and go to state 36
+    call                           shift and go to state 37
+    var                            shift and go to state 40
+
+state 160
+
+    (47) for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement .
+
+    BEGIN           reduce using rule 47 (for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement .)
+    PRINT           reduce using rule 47 (for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement .)
+    READ            reduce using rule 47 (for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement .)
+    IF              reduce using rule 47 (for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement .)
+    FOR             reduce using rule 47 (for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement .)
+    RETURN          reduce using rule 47 (for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement .)
+    CALL            reduce using rule 47 (for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement .)
+    IDENTIFIER      reduce using rule 47 (for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement .)
+    END             reduce using rule 47 (for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement .)
+    ELSE            reduce using rule 47 (for -> FOR IDENTIFIER ASSIGN expr TO expr DO statement .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for AND in state 94 resolved as shift
+WARNING: shift/reduce conflict for OR in state 94 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 94 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 94 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 94 resolved as shift
+WARNING: shift/reduce conflict for GREATEQ in state 94 resolved as shift
+WARNING: shift/reduce conflict for LESSEQ in state 94 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 94 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 116 resolved as shift
+WARNING: shift/reduce conflict for MINES in state 116 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 116 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 116 resolved as shift
+WARNING: shift/reduce conflict for ELSE in state 118 resolved as shift
+WARNING: shift/reduce conflict for AND in state 119 resolved as shift
+WARNING: shift/reduce conflict for OR in state 119 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 119 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 119 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 119 resolved as shift
+WARNING: shift/reduce conflict for GREATEQ in state 119 resolved as shift
+WARNING: shift/reduce conflict for LESSEQ in state 119 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 119 resolved as shift
+WARNING: shift/reduce conflict for AND in state 120 resolved as shift
+WARNING: shift/reduce conflict for OR in state 120 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 120 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 120 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 120 resolved as shift
+WARNING: shift/reduce conflict for GREATEQ in state 120 resolved as shift
+WARNING: shift/reduce conflict for LESSEQ in state 120 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 120 resolved as shift
+WARNING: shift/reduce conflict for AND in state 121 resolved as shift
+WARNING: shift/reduce conflict for OR in state 121 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 121 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 121 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 121 resolved as shift
+WARNING: shift/reduce conflict for GREATEQ in state 121 resolved as shift
+WARNING: shift/reduce conflict for LESSEQ in state 121 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 121 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 138 resolved as shift
+WARNING: shift/reduce conflict for MINES in state 138 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 138 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 138 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 139 resolved as shift
+WARNING: shift/reduce conflict for MINES in state 139 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 139 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 139 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 140 resolved as shift
+WARNING: shift/reduce conflict for MINES in state 140 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 140 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 140 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 141 resolved as shift
+WARNING: shift/reduce conflict for MINES in state 141 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 141 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 141 resolved as shift

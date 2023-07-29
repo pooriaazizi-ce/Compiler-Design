@@ -1,0 +1,2 @@
+if a<>b then return 1bar;
+else return 5;

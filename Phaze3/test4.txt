@@ -1,0 +1,1 @@
+begi for a:=10 to 12 do b:=b+1; end;

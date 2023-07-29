@@ -1,0 +1,6 @@
+var i: integer;
+var j: integer;
+begin
+i:='ali';
+j:='amir';
+end;

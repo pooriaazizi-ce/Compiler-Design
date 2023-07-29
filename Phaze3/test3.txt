@@ -1,0 +1,6 @@
+procedure F (a:integer);begin
+    print(a);
+end;
+begin
+    call F(14);
+end;

@@ -1,0 +1,6 @@
+var a : integer;
+var b : integer;
+begin
+a:=a+b;
+s:=a+d;
+end;
