@@ -7,16 +7,11 @@ The purpose of this course is to learn how to transform programs written in comm
 ### Project Description:<br>
 Compiler design for 'Small' programming language.<br>
 <br>
-#### First phase:<br>
-Manual lexical analysis<br>
-#### Second phase:<br>
-Lexical analysis with the help of python language tools<br>
-#### Third phase:<br>
-Syntactic analysis with the help of Yacc<br>
-#### Fourth phase:<br>
-Semantic analysis<br>
-#### Fifth phase:<br>
-Generation of intermediate code<br>
+#### First phase: Manual lexical analysis<br>
+#### Second phase: Lexical analysis with the help of python language tools<br>
+#### Third phase: Syntactic analysis with the help of Yacc<br>
+#### Fourth phase: Semantic analysis<br>
+#### Fifth phase: Generation of intermediate code<br>
 <br>
 The following grammar describes the syntactic structure of the Small_Lang language.<br>
 ![SharedScreenshot](https://github.com/pooriaazizi-ce/Compiler-Design/assets/99240766/84e5bf62-bdb4-4120-8ff3-896f754f1eb7)
