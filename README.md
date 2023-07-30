@@ -1,21 +1,21 @@
 # Compiler-Design
 Zanjan university compiler design course project<br>
 <br>
-###Course Description:<br>
+### Course Description:<br>
 The purpose of this course is to learn how to transform programs written in common user-level programming languages into code that can be executed by the processor.<br>
 <br>
-###Project Description:<br>
+### Project Description:<br>
 Compiler design for 'Small' programming language.<br>
 <br>
-####First phase:<br>
+#### First phase:<br>
 Manual lexical analysis<br>
-####Second phase:<br>
+#### Second phase:<br>
 Lexical analysis with the help of python language tools<br>
-####Third phase:<br>
+#### Third phase:<br>
 Syntactic analysis with the help of Yacc<br>
-####Fourth phase:<br>
+#### Fourth phase:<br>
 Semantic analysis<br>
-####Fifth phase:<br>
+#### Fifth phase:<br>
 Generation of intermediate code<br>
 <br>
 The following grammar describes the syntactic structure of the Small_Lang language.<br>
